@@ -44,7 +44,7 @@ manager.GlobalOptions.cacheLimit = 5;
 [here](https://github.com/zhaoyao91/react-page-cache-demo)
 
 ## TODO
-- try to use react and redux related *selector* to prevent too-many object creations.
+- try to use react and redux related *selector*.
 - support page switch animations.
 
 ## License
