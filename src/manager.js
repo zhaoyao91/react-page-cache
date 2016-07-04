@@ -12,6 +12,7 @@ const mapStateToProps = (state)=> {
 };
 
 const ConnectedRenderer = connect(mapStateToProps)(Renderer);
+ConnectedRenderer.displayName = 'ConnectedCacheRenderer';
 
 export default function createManager() {
     const store = createStore();
