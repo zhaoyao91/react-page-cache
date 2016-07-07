@@ -45,6 +45,7 @@ manager.GlobalOptions.cacheLimit = 5;
 
 ## TODO
 - support page switch animations.
+- support reset scroll position.
 
 ## License
 MIT
