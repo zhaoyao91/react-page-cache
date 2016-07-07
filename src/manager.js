@@ -28,7 +28,15 @@ export default function createManager() {
 
         renderer,
 
-        activatePage({id, args, page, cacheTime = this.GlobalOptions.cacheTime}) {
+        /**
+         * activate a cached page (if it is not cached, then create one first)
+         * @param id - unique page id
+         * @param args - any page args
+         * @param page - func(args): page, page element builder
+         * @param cacheTime - milliseconds
+         * @param scrollTop - if undefined, recover to the previous position; if null, then remain current position; if number, then scroll to it
+         */
+        activatePage({id, args, page, cacheTime = this.GlobalOptions.cacheTime, scrollTop}) {
             const store = this._store;
 
             // inactive other active pages (if works correctly, there will be at most one)
@@ -37,14 +45,14 @@ export default function createManager() {
             });
 
             // activate target page
-            let scrollTop = this._activatePage({id, args, page, cacheTime});
+            let previousScrollTop = this._activatePage({id, args, page, cacheTime});
 
             // remove over limit pages
             store.dispatch(actions.setItems(take(store.getState().items.slice().sort((a, b)=>b.lastActivatedAt.getTime() - a.lastActivatedAt.getTime()), this.GlobalOptions.cacheLimit)));
 
             // recover scroll
-            document.body.scrollTop = scrollTop;
-            setTimeout(()=>document.body.scrollTop = scrollTop, 0);
+            if (scrollTop === undefined) this._recoverScroll(previousScrollTop);
+            else if (scrollTop !== null) this._recoverScroll(scrollTop);
         },
 
         inactivatePages() {
@@ -107,6 +115,11 @@ export default function createManager() {
 
             // who invoked me? please scroll
             return scrollTop;
+        },
+
+        _recoverScroll(scrollTop) {
+            document.body.scrollTop = scrollTop;
+            setTimeout(()=>document.body.scrollTop = scrollTop, 0);
         }
     }
 };
