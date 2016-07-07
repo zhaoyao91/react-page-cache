@@ -28,6 +28,7 @@ ReactDOM.render(
     args: {...}, // whatever page args, optional
     page: (args)=><MyTestPage {...}/>, // how to build the page by the args
     cacheTime: 10 * 60 * 1000 // cache time after this page is inactivated, if omitted, it will equal to global options
+    scrollTop: ... // if undefined, it will recover to the previous scroll position; if null, remain current position; if number, then scroll to it
 })
 ```
 
@@ -45,7 +46,6 @@ manager.GlobalOptions.cacheLimit = 5;
 
 ## TODO
 - support page switch animations.
-- support reset scroll position.
 
 ## License
 MIT
