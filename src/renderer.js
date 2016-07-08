@@ -27,7 +27,7 @@ class CachePage extends React.Component {
     static propTypes = {
         args: React.PropTypes.any,
 
-        // page builder, func(args)
+        // page builder, func(args, cacheState)
         page: React.PropTypes.func.isRequired,
 
         isActive: React.PropTypes.bool
@@ -41,7 +41,7 @@ class CachePage extends React.Component {
         const {args, page, isActive} = this.props;
 
         return <div style={{display: isActive ? 'block' : 'none'}}>
-            {page(args)}
+            {page(args, {isActive})}
         </div>
     }
 }
