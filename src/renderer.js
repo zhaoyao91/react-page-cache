@@ -16,7 +16,7 @@ class CacheRenderer extends React.Component {
         return <div>
             {
                 items.map(item=> {
-                    return <CachePage key={item.id} {...pick(item, 'args', 'page', 'isActive')}/>
+                    return <CachePage key={item.id} {...pick(item, 'args', 'page', 'isActive', 'id')}/>
                 })
             }
         </div>
@@ -30,7 +30,9 @@ class CachePage extends React.Component {
         // page builder, func(args, cacheState)
         page: React.PropTypes.func.isRequired,
 
-        isActive: React.PropTypes.bool
+        isActive: React.PropTypes.bool,
+        
+        id: React.PropTypes.string
     };
 
     shouldComponentUpdate(oldProps) {
@@ -38,10 +40,10 @@ class CachePage extends React.Component {
     }
 
     render() {
-        const {args, page, isActive} = this.props;
+        const {args, page, isActive, id} = this.props;
 
         return <div style={{display: isActive ? 'block' : 'none'}}>
-            {page(args, {isActive})}
+            {page(args, {isActive, id})}
         </div>
     }
 }

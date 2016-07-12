@@ -1,2 +1,5 @@
+### 0.0.6
+page can receive cached page id
+
 ### 0.0.5
 page can receive cache state (isActive)
