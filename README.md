@@ -35,6 +35,9 @@ ReactDOM.render(
 ### If you really need, you can inactivate all pages
 `manager.inactivePages()`
 
+### Sometimes you may want ot force to expire or remove a cached page
+`manager.removePage(id)`
+
 ### You can set global options
 ```
 manager.GlobalOptions.cacheTime = 5 * 60 * 1000;

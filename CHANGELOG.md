@@ -1,3 +1,6 @@
+### 0.0.7
+support remove page by id
+
 ### 0.0.6
 page can receive cached page id
 

@@ -55,12 +55,23 @@ export default function createManager() {
             else if (scrollTop !== null) this._recoverScroll(scrollTop);
         },
 
+        /**
+         * inactivate all pages
+         */
         inactivatePages() {
             const store = this._store;
 
             store.getState().items.filter(item=>item.isActive).forEach(item=> {
                 this._inactivePage(item);
             });
+        },
+
+        /**
+         * remove specified page
+         * @param id
+         */
+        removePage(id) {
+            this._store.dispatch(actions.removeItem(id));
         },
 
         _inactivePage(item) {
