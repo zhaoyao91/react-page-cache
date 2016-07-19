@@ -38,6 +38,7 @@ export default function createManager() {
          */
         activatePage({id, args, page, cacheTime = this.GlobalOptions.cacheTime, scrollTop}) {
             const store = this._store;
+            const currentScrollTop = document.body.scrollTop;
 
             // inactive other active pages (if works correctly, there will be at most one)
             store.getState().items.filter(item=>item.isActive && item.id !== id).forEach(item=> {
@@ -45,14 +46,15 @@ export default function createManager() {
             });
 
             // activate target page
-            let previousScrollTop = this._activatePage({id, args, page, cacheTime});
+            const previousScrollTop = this._activatePage({id, args, page, cacheTime});
 
             // remove over limit pages
             store.dispatch(actions.setItems(take(store.getState().items.slice().sort((a, b)=>b.lastActivatedAt.getTime() - a.lastActivatedAt.getTime()), this.GlobalOptions.cacheLimit)));
 
             // recover scroll
             if (scrollTop === undefined) this._recoverScroll(previousScrollTop);
-            else if (scrollTop !== null) this._recoverScroll(scrollTop);
+            else if (scrollTop === null) this._recoverScroll(currentScrollTop);
+            else this._recoverScroll(scrollTop);
         },
 
         /**

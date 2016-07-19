@@ -1,3 +1,6 @@
+### 0.0.8, 0.0.9
+fix bug about recovering scroll top
+
 ### 0.0.7
 support remove page by id
 
