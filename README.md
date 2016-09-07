@@ -26,7 +26,7 @@ ReactDOM.render(
  manager.activatePage({
     id: 'unique page id',
     args: {...}, // whatever page args, optional
-    page: (args, cacheState)=><MyTestPage {...}/>, // how to build the page by the args
+    page: (args, cacheState)=><MyTestPage {...}/>, // how to build the page by the args; cacheState consists of {isActive, id}
     cacheTime: 10 * 60 * 1000 // cache time after this page is inactivated, if omitted, it will equal to global options
     scrollTop: ... // if undefined, it will recover to the previous scroll position; if null, remain current position; if number, then scroll to it
 })
