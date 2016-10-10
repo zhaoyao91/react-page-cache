@@ -44,6 +44,13 @@ manager.GlobalOptions.cacheTime = 5 * 60 * 1000;
 manager.GlobalOptions.cacheLimit = 5;
 ```
 
+### You can prevent default scroll restoration to get better scroll effect
+```
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+```
+
 ## Demo Repo
 [here](https://github.com/zhaoyao91/react-page-cache-demo)
 
